@@ -1,0 +1,60 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+    <div class="header">
+        <h1>{{ nameCM | uppercase }}</h1>
+        <div *ngIf="visible && !noData">
+            <button (click)="searchCM()" class="size-button" color="accent" mat-raised-button style="margin-left: 5px">
+                Recargar
+                <mat-icon>cached</mat-icon>
+            </button>
+            <button (click)="exportAsXLSX()" class="size-button" color="accent" mat-raised-button
+                    style="margin-left: 5px">
+                Exportar a excel(.xlsx)
+                <mat-icon>get_app</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="visible && !noData">
+        <div class="mat-elevation-z8">
+
+            <mat-card>
+                <mat-form-field class="full-width">
+                    <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filtro">
+                </mat-form-field>
+                <div class="con-scroll">
+                    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+                        <ng-container *ngFor="let column of columnDefs; let i = index" matColumnDef="{{ column.field }}">
+                            <div *ngIf="['SKU','MENSAJE', 'EQUIPO'].includes(column?.headerName)">
+                                <th *matHeaderCellDef mat-header-cell>{{ column.headerName | titlecase }}</th>
+                                <td *matCellDef="let element" mat-cell style="width:15rem">{{ element[column.field] }}</td>
+                            </div>
+                            <div *ngIf="i === 0">
+                                <th *matHeaderCellDef mat-header-cell>
+                                    {{ column.headerName | titlecase }}
+                                </th>
+                                <td *matCellDef="let element"
+                                    [ngClass]="element.ESTADO1 !== '5 - No Procesado' ? 'border-active' : 'border-inactive'"
+                                    mat-cell>
+                                    {{ element[column.field] }}
+                                </td>
+                            </div>
+                            <div>
+                                <th *matHeaderCellDef mat-header-cell>{{ column.headerName | titlecase }}</th>
+                                <td *matCellDef="let element" mat-cell>{{ element[column.field]}}</td>
+                            </div>
+                        </ng-container>
+
+                        <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+                    </table>
+                </div>
+
+            </mat-card>
+        </div>
+    </div>
+    <mat-paginator [fxShow]="visible && !noData" [pageSizeOptions]="[50, 100, 150]" showFirstLastButtons>
+    </mat-paginator>
+    <div *ngIf="!visible && noData" class="msjRegistros">
+        <h1>NO SE HAN ENCONTRADO REGISTROS</h1>
+    </div>
+</div>

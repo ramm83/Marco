@@ -1,0 +1,72 @@
+::ng-deep {
+    .mat-dialog-container {
+        overflow: visible !important;
+    }
+}
+
+.end-button {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    & button {
+        background-color: #0072ce;
+    }
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    & button {
+        justify-self: end;
+    }
+}
+
+.modal {
+    width: 700px;
+}
+
+.modal-two-columns .modal-body {
+    &-component-wrapper {
+        & form {
+            display: grid;
+            grid-gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 939px) {
+    .modal-two-columns .modal-body {
+        &-component-wrapper {
+            & form {
+                grid-template-columns: auto auto;
+            }
+        }
+    }
+    .modal {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 583px) {
+    .modal-two-columns .modal-body {
+        &-component-wrapper {
+            & form {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+    ::ng-deep {
+        .cdk-overlay-pane {
+            overflow-y: auto;
+        }
+    }
+}

@@ -1,0 +1,4 @@
+<div *ngIf="this.iframe">
+    <iframe appIframeTracker (iframeClick)="overOutIframe()" [src]="this.iframe | safe: 'resourceUrl'" frameborder="0" allowfullscreen></iframe>
+</div>
+

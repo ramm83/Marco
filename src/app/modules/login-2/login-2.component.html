@@ -1,0 +1,61 @@
+<div class="inner-scroll" fxLayout="row" fxLayoutAlign="start" id="login">
+
+    <div fxFlex fxHide fxShow.gt-xs id="login-intro">
+        <div [@animate]="{value:'*',params:{scale:'0.2'}}" class="logo">
+            <img src="assets/images/SGLSodimac_Corona5.png">
+        </div>
+    </div>
+
+    <div [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}" fusePerfectScrollbar
+         fxLayout="column" fxLayoutAlign="space-around center" id="login-form-wrapper">
+
+        <div id="login-form">
+
+            <div class="logo" fxHide.gt-xs>
+                <img src="assets/images/SGLSodimac_Corona5.png">
+            </div>
+
+            <div class="title">BIENVENIDO</div>
+
+            <form [formGroup]="loginForm" name="loginForm" novalidate>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Usuario</mat-label>
+                    <input formControlName="username" matInput>
+                    <mat-icon class="secondary-text" matSuffix>account_box</mat-icon>
+                    <mat-error *ngIf="loginForm.get('username').hasError('required')">
+                        Usuario es requerido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input (keydown.enter)="autenticarUsuario()" formControlName="password" matInput type="password">
+                    <mat-icon class="secondary-text" matSuffix>vpn_key</mat-icon>
+                    <mat-error *ngIf="loginForm.get('password').hasError('required')">
+                        Contraseña requerida
+                    </mat-error>
+                </mat-form-field>
+
+                <button (click)="autenticarUsuario()" aria-label="LOGIN" class="submit-button" color="accent"
+                        mat-raised-button
+                        type="button">
+                    Ingresar
+                </button>
+
+            </form>
+            <div *ngIf="urlOnboarding" style="margin-top: 20px; text-align: center;">
+                <mat-label style="font-size: 13px;">¿Aún no estás registrado?
+                    <a [href]="urlOnboarding">Crea tu cuenta aquí</a>
+                </mat-label>
+            </div>
+
+        </div>
+        <div class="mx-8" fxLayout="column" fxLayoutAlign="center center" style="font-size: 10px;">
+            <p class="m-0" style="color: #b3b1b185;">Versión 2.0</p>
+            <p style="color:#3c76d278; margin: 0;">
+                Powered by GSPL
+            </p>
+        </div>
+    </div>
+</div>

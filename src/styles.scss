@@ -1,0 +1,15 @@
+// Import Fuse core library
+@import "@fuse/scss/core";
+
+// Import app.theme.scss
+@import "app/app.theme";
+
+// Custom changes on fuse
+fuse-sidebar{
+    box-shadow: none !important;
+    .logo-text{
+        font-weight: 600 !important;
+    }
+}
+
+@import "~@ng-select/ng-select/themes/material.theme.css";

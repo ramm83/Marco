@@ -1,0 +1,8 @@
+<ng-container *ngIf="!item.hidden">
+    <div class="group-title" [ngClass]="item.classes" (click)="showNavExtensible(item);">
+        <mat-icon>{{item.icon}}</mat-icon>
+        <span class="ml-8">
+            {{ item.title }}
+        </span>
+    </div>
+</ng-container>

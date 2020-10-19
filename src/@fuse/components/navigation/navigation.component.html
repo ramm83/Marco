@@ -1,0 +1,19 @@
+<div class="nav vertical" fxLayout="column" fxLayoutAlign="space-between">
+    <!-- Vertical Navigation Layout -->
+    <div *ngIf="navigation">
+        <ng-container *ngFor="let item of navigation">
+            <fuse-nav-extensible-group *ngIf="item.type=='group'" [item]="item"></fuse-nav-extensible-group>
+            <fuse-nav-extensible-collapsable *ngIf="item.type=='collapsable'" [item]="item">
+            </fuse-nav-extensible-collapsable>
+            <fuse-nav-extensible-item *ngIf="item.type=='item'" [item]="item"></fuse-nav-extensible-item>
+        </ng-container>
+    </div>
+    <!-- / Vertical Navigation Layout -->
+
+    <div class="nav-group mb-40">
+        <div class="group-title" (click)="logout()">
+            <mat-icon>power_settings_new</mat-icon>
+            <span class="ml-8">Cerrar sesión</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="page-layout blank p-0" fusePerfectScrollbar>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <h1>{{data.Descripcion}}</h1>
+        <div class="end-button">
+            <button (click)="Cerrar()" color="secondary" mat-icon-button>
+                <mat-icon class="m-0">close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <app-cm-viewer [idCM]="IdCargue" [idTipoCM]="IdTipoCM"></app-cm-viewer>
+    </div>
+</div>

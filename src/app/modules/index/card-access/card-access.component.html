@@ -1,0 +1,37 @@
+<!--header card-->
+<div fxLayout="row" class="h-80">
+    <div class="p-12" fxFlex="30" style="text-align: center">
+        <img [src]="img" alt="apps" class="img-primary-card">
+    </div>
+    <div fxFlex="70">
+        <div fxLayout="column">
+            <div>
+                <h2 class="primary-card-title">{{title}}</h2>
+            </div>
+            <div class="secondary-card-title">
+                Usad{{title === 'Aplicaciones' ? 'a' : 'o'}}s recientemente
+            </div>
+        </div>
+    </div>
+</div>
+<!--recently--><!--
+<button (click)="click()"></button>-->
+
+<div #papacard class="container-access">
+    <div *ngIf="!itemsShow || itemsShow.length === 0" class="not-resources">No tiene {{title}} recientes.</div>
+    <mat-card class="card-last-access" *ngFor="let option of itemsShow" [@fadeInOut]="animate" (click)="navigate(option)">
+        <div class="primary-text" *ngFor="let a of [option.lvl3 === '--' ? 'Generico' : option.lvl3]">
+            {{option.lvl1 === '--' ? 'Generico' : option.lvl1 }}
+            -
+            {{a | slice:0: (28 - ((option.lvl1 === '--' ? 'Generico' : option.lvl1)?.length)+3)}}{{ (a)?.length > (28 - (option.lvl1 === '--' ? 'Generico' : option.lvl1)?.length)+3 ? '...' : ''}}
+        </div>
+        <div  fxHide fxShow.gt-sm class="secondary-text">
+            {{option.lvl2 === '--' ? 'Generico' : option.lvl2}}/{{option.lvl3 === '--' ? 'Generico' : option.lvl3}}
+        </div>
+        <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon">{{icon}}</mat-icon>
+        <!--<div class="date-access">
+            Ultimo acceso: 18/08/2020
+        </div>-->
+    </mat-card>
+</div>
+

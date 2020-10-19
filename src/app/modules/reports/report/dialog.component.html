@@ -1,0 +1,47 @@
+<!-- Modal -->
+<div *ngIf="Valid" [ngClass]="{'modal-two-columns':items.length > 2}" aria-hidden="true"
+     aria-labelledby="myExtraLargeModalLabel" class="modal"
+     role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Parametros del Reporte</h2>
+            </div>
+            <div class="modal-body modal-body-component-wrapper">
+                <form [formGroup]="myForm" class="container">
+                    <div *ngFor="let item of items">
+                        <div [ngSwitch]="item.TIPO">
+                            <div *ngSwitchCase="'SYS_REFCURSOR'">
+                                <app-drop-down [cmb]="item" [form]="myForm"></app-drop-down>
+                            </div>
+                        </div>
+                        <div [ngSwitch]="item.TIPO">
+                            <div *ngSwitchCase="'VARCHAR2'">
+                                <app-text [form]="myForm" [text]="item"></app-text>
+                            </div>
+                        </div>
+                        <div [ngSwitch]="item.TIPO">
+                            <div *ngSwitchCase="'NUMBER'">
+                                <app-number [form]="myForm" [number]="item"></app-number>
+                            </div>
+                        </div>
+                        <div [ngSwitch]="item.TIPO">
+                            <div *ngSwitchCase="'DATE'">
+                                <app-date-picker [date]="item" [form]="myForm"></app-date-picker>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- <p>{{ myForm.value | json }}</p>      -->
+            </div>
+            <div class="modal-footer">
+                <button (click)="onNoClick()" color="secondary" mat-raised-button style="color: #fff">Cancelar</button>
+                <button (click)="onSubmit()" [disabled]="!isValid()" color="primary" mat-raised-button
+                        style="margin-left: 5px;">Consultar
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

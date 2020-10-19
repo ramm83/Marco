@@ -1,0 +1,9 @@
+<div [formGroup]="form">
+    <div class="form-group">
+        <!-- <label for="{{cmb.NOMBRE}}">{{cmb.DESCRIPCION}}</label> -->
+        <ng-select [formControlName]="cmb.NOMBRE" class="custom" id="{{cmb.NOMBRE}}" [virtualScroll]="true"
+            [(items)]="lkp" bindValue="ID" bindLabel="DESCRIPCION" placeholder="{{cmb.DESCRIPCION}}" 
+            required>
+        </ng-select>
+    </div>
+</div>

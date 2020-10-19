@@ -1,0 +1,18 @@
+:host {
+    .mat-form-field {
+        width: 100%;
+        padding: 0 30px;
+    }
+}
+
+
+::ng-deep .mat-autocomplete-panel-change {
+    border-radius: 1em !important;
+    margin-top: 0.5em;
+}
+
+::ng-deep .mat-form-field-change {
+    & .mat-form-field-wrapper {
+        padding: 0px !important;
+    }
+}

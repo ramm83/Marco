@@ -1,0 +1,55 @@
+<div fusePerfectScrollbar fxFlex fxLayout="column">
+
+    <mat-list cdkFocusRegionStart class="date">
+
+        <h3 cdkFocusInit class="conventions" matSubheader>
+            <!-- <span>Hoy</span> -->
+            <span><mat-icon [ngStyle]="{'color': '#6791c5'}">cloud_upload</mat-icon>Cargue Masivo</span>
+            <span><mat-icon [ngStyle]="{'color': '#55d871'}">list_alt</mat-icon>Reporte</span>
+        </h3>
+
+        <div class="secondary-text mat-display-1-nv mb-0 pl-16">
+            <!-- <div>
+                {{date | date:'EEEE'}}
+            </div> -->
+            <div class="day" fxLayout="row" fxLayoutAlign="start start">
+                <span> {{date | date:'EEEE'}} {{date | date:'d'}} de {{date | date:'MMMM'}}
+                    de {{date | date:'yyyy'}}</span>
+            </div>
+        </div>
+    </mat-list>
+
+    <mat-divider cdkFocusRegionEnd></mat-divider>
+
+    <mat-accordion>
+        <!-- <mat-expansion-panel *ngFor="let mssG of messageGroup; let i = index"> -->
+        <mat-expansion-panel *ngFor="let mssG of messageGroup">
+            <mat-expansion-panel-header class="p-0-12" style="font-size: 12px;">
+                <mat-panel-title>
+                    <!-- <mat-icon [ngStyle]="{'color': mssG.ID_TIPO_TAREA == 4 ? '#6791c5' : mssG.ID_TIPO_TAREA == 5 ? '#55d871' : 'black'}">turned_in</mat-icon> -->
+                    <mat-icon *ngIf="mssG.ID_TIPO_TAREA == 4" [ngStyle]="{'color': GetColorTipo(mssG)}">cloud_upload
+                    </mat-icon>
+                    <mat-icon *ngIf="mssG.ID_TIPO_TAREA == 5" [ngStyle]="{'color': GetColorTipo(mssG)}">list_alt
+                    </mat-icon>
+                    <b>{{mssG.TAREA | titlecase}} - {{mssG.ID_EJECUCION_TAREA}}</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+                <mat-list-item *ngFor="let mss of mssG.MENSAJES" class="item" role="listitem">
+                    <mat-icon [ngStyle]="{'color': GetColor(mss.COLOR)}" mat-list-icon>check_circle</mat-icon>
+                    <div class="div-messages">
+                        <span>{{mss.MENSAJE}}</span>
+                        <span>Fecha Inicio: {{mss.FECHA_INICIO | date: 'yyyy/MM/dd hh:mm:ss a'}}</span>
+                        <span>Fecha Fin: {{mss.FECHA_FIN | date: 'yyyy/MM/dd hh:mm:ss a'}}</span>
+                        <div
+                            *ngIf="mss.ID_MENSAJE && (mss.ID_MENSAJE == 43 || mss.ID_MENSAJE == 39 || mss.ID_MENSAJE == 37)">
+                            <span (click)="viewReport(mss)" class="enlace">
+                                Consulte el {{mss.ID_TIPO_TAREA == 4 ? 'cargue' : 'reporte'}} aquí
+                            </span>
+                        </div>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

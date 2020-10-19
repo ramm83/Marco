@@ -1,0 +1,49 @@
+<mat-toolbar class="p-0">
+
+    <button mat-icon-button class="navbar-toggle-button"
+             (click)="toggleSidebarOpen('navbar')" fxShow fxHide.gt-xs>
+        <mat-icon class="secondary-text">menu</mat-icon>
+    </button>
+
+    <div fxFill fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="searchbox" fxFlex>
+            <searchbox></searchbox>
+        </div>
+
+        <div fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+            <div class="user-avatar">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <span class=" mr-12" fxHide fxShow.gt-sm>Bienvenido,
+                        {{ (user?.NOMBRES?.split(" ")[0] || 'Usuario') | titlecase}}</span>
+                    <span [mdePopoverTriggerFor]="appPopover" (click)="someMethod()"
+                          mdePopoverTriggerOn="hover" #popoverTrigger="mdePopoverTrigger"
+                          class="avatar-letters">{{(getInitials() || 'S/N')}}</span>
+                </div>
+            </div>
+            <div class="toolbar-separator"></div>
+            <button (click)="toggleSidebarOpen('quickPanel')" aria-label="Toggle quick panel"
+                    class="quick-panel-toggle-button"
+                    mat-icon-button>
+                <mat-icon *ngIf="cantidad == 0" class="secondary-text">
+                    format_list_bulleted
+                </mat-icon>
+                <mat-icon *ngIf="cantidad > 0" class="secondary-text" matBadge="{{cantidad}}" matBadgeColor="warn">
+                    format_list_bulleted
+                </mat-icon>
+            </button>
+
+
+        </div>
+
+    </div>
+
+</mat-toolbar>
+
+<mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="false">
+    <mat-card style="min-width: 350px; max-width: 350px">
+        <mat-card-content>
+            <app-popover-user [letters]="getInitials() || 'S/N'" [user]="user">
+            </app-popover-user>
+        </mat-card-content>
+    </mat-card>
+</mde-popover>

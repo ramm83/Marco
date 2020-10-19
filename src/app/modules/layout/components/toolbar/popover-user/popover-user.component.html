@@ -1,0 +1,29 @@
+<div fxLayout="row wrap">
+    <div fxFlex="30">
+        <span class="avatar-popover">{{letters || 'S/N'}}</span>
+    </div>
+    <div fxFlex="70">
+        <div fxLayout="column">
+            <div fxFlex="25" class="subtt">
+                Nombre:
+            </div>
+            <div fxFlex="25">
+                {{user?.NOMBRES | titlecase}} {{user?.APELLIDOS | titlecase}}
+            </div>
+            <div fxFlex="25" class="subtt">
+                Rol:
+            </div>
+            <div fxFlex="25">
+                {{user?.ROL}}
+            </div>
+            <div>
+                <div class="log-out-button">
+                    <button (click)="logout()" mat-icon-button aria-label="logout"
+                            matTooltip="Cerrar Sesión" matTooltipPosition="left">
+                        <mat-icon class="no-margin">power_settings_new</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

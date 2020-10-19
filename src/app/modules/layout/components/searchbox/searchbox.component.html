@@ -1,0 +1,41 @@
+<!--<br>-->
+<mat-form-field [style.fontSize.px]=12 appearance="outline" class="searchbox mat-form-field-change" floatLabel="never"
+                fxHide.lt-sm>
+    <mat-icon class="search-icon" matPrefix>search</mat-icon>
+    <button (click)="clearInput()" *ngIf="toSearch?.length > 0" aria-label="Clear" mat-button mat-icon-button matSuffix>
+        <mat-icon style="color: #cecece;">close</mat-icon>
+    </button>
+
+    <input #idAutocomplete  (ngModelChange)="changeInput($event)" [(ngModel)]="toSearch" [matAutocomplete]="autoGroup"
+           [placeholder]="searchMessage"
+           matInput>
+
+    <mat-autocomplete class="mat-autocomplete-panel-change" #autoGroup="matAutocomplete">
+
+        <ng-container *ngIf="![null, undefined, []].includes(filteredData)">
+            <ng-container *ngFor="let biggroup of filteredData">
+                <ng-container *ngFor="let group of biggroup?.children">
+                    <ng-container *ngIf="group?.type === 'group'">
+                        <ng-container *ngFor="let collapse of group?.children">
+                            <ng-container *ngIf="collapse?.type === 'collapsable'">
+                                <mat-optgroup>
+                                    <span>{{biggroup?.title !== '--' ? biggroup?.title : 'Generico'}}
+                                        - {{group?.title !== '--' ? group?.title : 'Generico'}}
+                                        - {{collapse?.title}}</span>
+                                    <ng-container *ngFor="let item of collapse?.children">
+                                        <mat-option (onSelectionChange)="navegar(item)">
+                                            <fuse-nav-extensible-item *ngIf="item?.type === 'item'" [item]="item">
+                                            </fuse-nav-extensible-item>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-optgroup>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+
+    </mat-autocomplete>
+
+</mat-form-field>

@@ -1,0 +1,54 @@
+@mixin toolbar-theme($theme) {
+    $foreground: map-get($theme, foreground);
+
+    toolbar {
+        .toolbar-separator {
+            background: map-get($foreground, divider);
+        }
+    }
+}
+
+
+.searchbox {
+    .mat-form-field-outline {
+        background-color: #fff;
+        border-radius: 50px;
+        box-sizing: border-box;
+
+        .mat-form-field-outline-end {
+            border: none;
+            min-width: 0;
+        }
+
+        .mat-form-field-outline-start {
+            border: none;
+            min-width: 0;
+        }
+
+        .mat-form-field-outline-thick {
+            .mat-form-field-outline-start,
+            .mat-form-field-outline-gap,
+            .mat-form-field-outline-end {
+                border-color: #000 !important;
+            }
+        }
+    }
+
+    .mat-icon.search-icon {
+        color: #fff;
+        background-color: #075692ab;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mat-form-field-infix {
+        border: none;
+        padding: 1em;
+        margin-top: 0.2em;
+        color: #000;
+    }
+}

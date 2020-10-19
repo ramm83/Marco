@@ -1,0 +1,72 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+
+    <h1>{{descripcion | uppercase}}</h1>
+    <hr>
+    <div>
+        <div class="end-button">
+            <input #fileInput (change)="onFileSelect($event.target)" accept="text/plain, .xls, .xlsx" hidden
+                   type="file"/>
+            <button (click)="exportPlantilla()" class="size-button" color="accent" mat-raised-button>
+                Exportar Plantilla(.txt)
+                <mat-icon>get_app</mat-icon>
+            </button>
+            <button (click)="exportPlantillaXlsx()" class="size-button" color="accent" mat-raised-button
+                    style="margin-left: 5px">
+                Exportar Plantilla(.xlsx)
+                <mat-icon>get_app</mat-icon>
+            </button>
+            <button (click)="fileInput.click()" class="size-button" color="accent" mat-raised-button
+                    style="margin-left: 5px">
+                Importar(.txt , .xls , .xlsx)
+                <mat-icon>backup</mat-icon>
+            </button>
+        </div>
+
+        <div *ngIf="isThereData">
+            <div class="mat-elevation-z8">
+                <mat-form-field class="full-width">
+                    <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filtro">
+                </mat-form-field>
+                <div class="con-scroll">
+                    <table [dataSource]="dataSource" mat-table>
+                        <ng-container *ngFor="let column of columnDefs; let i = index"
+                                      matColumnDef="{{ column.field }}">
+                            <div *ngIf="i === 0">
+                                <th *matHeaderCellDef mat-header-cell>
+                                    {{ column.headerName | titlecase }}
+                                </th>
+                                <td *matCellDef="let element"
+                                    [ngClass]="element.ESTADO === 'Procesado Con Exito' ? 'border-active' : 'border-inactive'"
+                                    mat-cell>
+                                    {{ element[column.field] }}
+                                </td>
+                            </div>
+                            <div *ngIf="i === columnDefs.length-1">
+                                <th *matHeaderCellDef mat-header-cell>
+                                    {{ column.headerName | titlecase }}
+                                </th>
+                                <td *matCellDef="let element" mat-cell>
+                                    <button (click)="viewDetails(element)" aria-label="Ver detalles" mat-icon-button>
+                                        <mat-icon class="m-0">visibility</mat-icon>
+                                    </button>
+                                </td>
+                            </div>
+                            <div>
+                                <th *matHeaderCellDef mat-header-cell>{{ column.headerName | titlecase }}</th>
+                                <td *matCellDef="let element" mat-cell>{{ element[column.field]}}</td>
+                            </div>
+                        </ng-container>
+
+                        <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <mat-paginator [fxShow]="isThereData" [pageSizeOptions]="[50, 100, 150]" showFirstLastButtons>
+        </mat-paginator>
+        <div *ngIf="!isThereData" class="msjRegistros">
+            <h1>NO SE HAN ENCONTRADO REGISTROS</h1>
+        </div>
+    </div>
+</div>

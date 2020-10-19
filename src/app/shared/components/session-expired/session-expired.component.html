@@ -1,0 +1,34 @@
+<div *ngIf="data.type === 0 || data.type === 2">
+    <h2 class="mb-8 text-center" mat-dialog-title>
+        {{data.text}}
+    </h2>
+    <div class="h-100" fxLayout="column" fxLayoutAlign="space-around center" mat-dialog-content>
+        <mat-icon class="font-size-60 w-60 h-60" style="color: #ec5858;">
+            {{data.icon}}
+        </mat-icon>
+    </div>
+    <div class="p-0" mat-dialog-actions>
+        <div class="w-100-p" fxLayout="row" fxLayoutAlign="end">
+            <button (click)="onClose()" class="accent mat-elevation-z4" mat-button>Aceptar</button>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="data.type === 1">
+    <h2 class="mb-8 text-center" mat-dialog-title>
+        Su sesión expira por <strong>inactividad</strong> en:
+    </h2>
+    <div fxLayout="column" fxLayoutAlign="space-around center" mat-dialog-content>
+        <mat-icon class="font-size-48 w-48 h-48" style="color: #ffc107;">
+            {{data.icon}}
+        </mat-icon>
+        <countdown [config]="{ leftTime: data.time, format: 'mm:ss' }" class="clock"
+                   (event)="handleEvent($event)"></countdown>
+    </div>
+    <div class="p-0" mat-dialog-actions>
+        <div class="w-100-p" fxLayout="row" fxLayoutAlign="end">
+            <button (click)="continuar()" class="accent mat-elevation-z4" mat-button>Sigo aquí</button>
+        </div>
+    </div>
+</div>

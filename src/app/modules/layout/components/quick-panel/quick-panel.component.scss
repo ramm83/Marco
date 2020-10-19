@@ -1,0 +1,75 @@
+quick-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    z-index: 99;
+
+    .mat-slide-toggle-content {
+        flex: 1;
+    }
+}
+
+.mat-display-1-nv {
+    font: 400 24px/28px Muli, Helvetica Neue, Arial, sans-serif;
+    margin: 0 0 64px;
+}
+
+.mat-expansion-panel-body {
+    padding: 0px 24px 0px;
+
+    & .mat-list-base {
+        padding-top: 0px;
+    }
+}
+
+.item {
+    font-size: 13px !important;
+    min-height: 25px;
+    height: auto !important;
+}
+
+.mat-list-item-content {
+    padding: 0px !important;
+}
+
+.p-0-12 {
+    padding: 0 25px 0 12px !important;
+}
+
+.enlace {
+    text-decoration: underline;
+    color: blue;
+    font-style: italic;
+    cursor: pointer;
+}
+
+.day {
+    font-size: 20px;
+    margin-bottom: 2rem;
+}
+
+.conventions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+}
+
+.div-messages {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    & span:not(:first-child) {
+        font-size: 10px;
+    }
+
+    & span:nth-child(1) {
+        font-weight: 700;
+    }
+}
+
+.mat-icon {
+    vertical-align: middle;
+    margin-right: 5px;
+}

@@ -1,0 +1,18 @@
+<div [ngClass]="fuseConfig.layout.navbar.secondaryBackground" class="navbar-header" [ngStyle.lt-sm]="{ 'height.px': 56, 'min-height.px': 56}">
+
+    <div class="logo" routerLink="/index" style="cursor: pointer">
+        <img class="logo-icon" src="assets/images/casita.png">
+        <span class="logo-text" [ngStyle.lt-sm]="{ 'font-size.px': 15 }">SGL <small class="font-size-10" style="color: #ffffff6b;">v2.0</small></span>
+    </div>
+
+    <button (click)="toggleSidebarFolded()" class="toggle-sidebar-folded" mat-icon-button fxShow fxHide.gt-xs>
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+
+</div>
+
+<div [fusePerfectScrollbarOptions]="{suppressScrollX: true}" [ngClass]="fuseConfig.layout.navbar.primaryBackground"
+     class="navbar-content"
+     fusePerfectScrollbar>
+    <fuse-navigation></fuse-navigation>
+</div>

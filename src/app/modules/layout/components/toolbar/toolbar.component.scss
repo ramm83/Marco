@@ -1,0 +1,74 @@
+@import "src/@fuse/scss/fuse";
+
+.user-avatar {
+    font-family: Muli, Helvetica Neue, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+toolbar {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    z-index: 4;
+
+    &.below {
+        z-index: 2;
+    }
+
+    .mat-toolbar {
+        position: relative;
+        background: inherit !important;
+        color: inherit !important;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        .logo-icon {
+            width: 38px;
+        }
+    }
+
+    .user-button,
+    fuse-search-bar,
+    .language-button,
+    .chat-panel-toggle-button,
+    .quick-panel-toggle-button {
+        min-width: 64px;
+        height: 64px;
+
+        @include media-breakpoint("xs") {
+            height: 56px;
+        }
+    }
+
+    .navbar-toggle-button {
+        min-width: 56px;
+        height: 56px;
+    }
+
+    .toolbar-separator {
+        height: 64px;
+        width: 1px;
+
+        @include media-breakpoint("xs") {
+            height: 56px;
+        }
+    }
+
+    .avatar-letters {
+        width: 35px;
+        height: 35px;
+        background-color: #243048;
+        border-radius: 50%;
+        color: white;
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        align-items: center;
+        cursor: pointer;
+    }
+}

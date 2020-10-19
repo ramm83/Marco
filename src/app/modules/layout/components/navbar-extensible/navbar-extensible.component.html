@@ -1,0 +1,38 @@
+<ng-container *ngIf="viewmodel != null">
+    <div class="nav-extensible" [ngClass]="{'no-items': viewmodel.children.length === 0}">
+        <mat-checkbox class="expand-all"
+                      (change)="toggleExpand()"
+                      [labelPosition]="'before'"
+                      *ngIf="viewmodel.children.length > 0">
+            Expandir todo:
+        </mat-checkbox>
+
+        <div class="delete-filter" *ngIf="viewmodel.children.length > 0 && (searchboxText | async)?.length > 0">
+            <a style="cursor: pointer" (click)="clearFilter()">Eliminar filto</a>
+        </div>
+
+        <div *ngIf="viewmodel.children.length === 0"
+             style="position: absolute; top: 48%; width: 100%; text-align: center">
+            <span style="color: #00000094">No se encontró nada por "{{searchboxText | async}}"</span>
+            <div>
+                <a style="cursor: pointer" (click)="clearFilter()">Eliminar filto</a>
+            </div>
+        </div>
+
+        <div fxLayout="row wrap">
+            <ng-container *ngIf="viewmodel">
+                <ng-container *ngFor="let item1 of viewmodel.children">
+                    <div class="extensible-item">
+                        <fuse-nav-extensible-collapsable *ngIf="item1.type=='group'" [item]="item1">
+                        </fuse-nav-extensible-collapsable>
+                        <hr>
+                        <ng-container *ngFor="let item of item1.children">
+                            <fuse-nav-vertical-collapsable *ngIf="item.type=='collapsable'" [item]="item">
+                            </fuse-nav-vertical-collapsable>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>

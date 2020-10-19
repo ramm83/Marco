@@ -1,0 +1,42 @@
+// Colors
+$HC-background: #efefef;
+$HC-scrollbar-background: #f5f5f5;
+$HC-primary: #0072ce;
+$HC-success: #38ad6a;
+$HC-warning: #fbd600;
+$HC-danger: #ff4646;
+$HC-light-gray: #ecebeb;
+$HC-gray: #333;
+$HC-dark-gray: #858585;
+$HC-white: white;
+$HC-black: black;
+
+// Gradients
+
+$primary-gradient: linear-gradient(
+  to right,
+  $HC-primary,
+  darken($HC-primary, 20%)
+);
+$success-gradient: linear-gradient(
+  to right,
+  $HC-success,
+  darken($HC-success, 20%)
+);
+$warning-gradient: linear-gradient(
+  to right,
+  $HC-warning,
+  darken($HC-warning, 20%)
+);
+$danger-gradient: linear-gradient(
+  to right,
+  $HC-danger,
+  darken($HC-danger, 20%)
+);
+
+// Mixins
+@mixin custom-media-query-1 {
+  @media (max-width: 520px) {
+    @content;
+  }
+}
